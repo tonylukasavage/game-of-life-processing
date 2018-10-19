@@ -16,7 +16,6 @@ class Cell {
   }
   
   void draw() {
-    fill(alive ? #ffffff : #000000);
     rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE); 
   }
 }
@@ -76,11 +75,13 @@ void draw() {
   }
 
   // build next generation
+  background(0);
+  fill(255);
   for (int x = 0; x < columns; x++) {
     for (int y = 0; y < rows; y++) {
       Cell cell = cells[x][y];
       cell.alive = getNextState(x, y, cell.lastAlive);
-      cell.draw();
+      if (cell.alive) cell.draw();
     }
   }
   
